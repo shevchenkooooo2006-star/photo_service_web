@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Бронирования</h2>
+<button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#createModal">
+    Создать бронирование
+</button>
+<div id="bookings-list"></div>
+
+<!-- Модальное окно создания -->
+<div class="modal fade" id="createModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Новое бронирование</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="booking-form">
+          <div class="mb-3">
+              <label>Фотограф</label>
+              <select id="photographer" class="form-select" required></select>
+          </div>
+          <div class="mb-3">
+              <label>Локация</label>
+              <select id="location" class="form-select" required></select>
+          </div>
+          <div class="mb-3">
+              <label>Клиент (ID)</label>
+              <input type="number" id="client" class="form-control" required>
+          </div>
+          <div class="mb-3">
+              <label>Дата съёмки</label>
+              <input type="date" id="shoot_date" class="form-control" required>
+          </div>
+          <div class="mb-3">
+              <label>Длительность (ч)</label>
+              <input type="number" id="hours" min="1" class="form-control" required>
+          </div>
+          <div class="form-check mb-3">
+              <input type="checkbox" id="need_makeup" class="form-check-input">
+              <label class="form-check-label">Нужен визажист</label>
+          </div>
+          <button class="btn btn-primary w-100">Создать</button>
+          <p class="text-danger mt-2" id="form-error"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/bookings.js' %}"></script>
+{% endblock %}

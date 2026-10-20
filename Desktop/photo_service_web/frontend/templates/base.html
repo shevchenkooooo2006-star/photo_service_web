@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Сервис фотосессий{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">📸 Фотосервис</a>
+        <div class="navbar-nav me-auto">
+            <a class="nav-link" href="/photographers/">Фотографы</a>
+            <a class="nav-link" href="/locations/">Локации</a>
+            <a class="nav-link" href="/bookings/">Бронирования</a>
+        </div>
+        <div class="navbar-nav" id="auth-block">
+            <a class="nav-link" href="/login/" id="login-link">Войти</a>
+            <a class="nav-link d-none" href="#" id="logout-link">Выйти</a>
+        </div>
+    </div>
+</nav>
+<div class="container mt-4">
+    {% block content %}{% endblock %}
+</div>
+<script src="{% static 'js/api.js' %}"></script>
+<script src="{% static 'js/auth.js' %}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

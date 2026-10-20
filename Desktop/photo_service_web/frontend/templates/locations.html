@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Локации</h2>
+<div id="locations-list" class="row"></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/locations.js' %}"></script>
+{% endblock %}

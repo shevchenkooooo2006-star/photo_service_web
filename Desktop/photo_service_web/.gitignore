@@ -1,0 +1,27 @@
+# Виртуальное окружение
+venv/
+.venv/
+env/
+
+# Python-кэш
+__pycache__/
+*.py[cod]
+*.so
+
+# База данных SQLite
+db.sqlite3
+
+# Секреты и переменные окружения
+.env
+
+# Кэш тестов и pytest
+.pytest_cache/
+
+# Статика (если будете собирать)
+staticfiles/
+
+# IDE и ОС
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
