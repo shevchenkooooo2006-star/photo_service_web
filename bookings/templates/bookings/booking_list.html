@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Бронирования - Фотосервис{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Бронирования</h2>
+<p>Всего броней: <strong>{{ bookings|length }}</strong></p>
+
+{% for b in bookings %}
+    <div class="card mb-2">
+        <div class="card-body">
+            <h5 class="card-title">Бронирование #{{ b.id }}</h5>
+            <p class="card-text">
+                📷 <strong>Фотограф:</strong> {{ b.photographer_name }}<br>
+                🏞 <strong>Локация:</strong> {{ b.location_name }}<br>
+                👤 <strong>Клиент:</strong> {{ b.client_name }}<br>
+                📅 <strong>Дата:</strong> {{ b.shoot_date }}<br>
+                ⏱ <strong>Длительность:</strong> {{ b.hours }} ч.
+            </p>
+            {% if b.is_cancelled %}
+                <span class="badge bg-danger">Отменено</span>
+            {% else %}
+                <span class="badge bg-success">Активно</span>
+            {% endif %}
+        </div>
+    </div>
+{% empty %}
+    <p class="text-muted">Бронирований нет.</p>
+{% endfor %}
+{% endblock %}

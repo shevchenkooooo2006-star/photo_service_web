@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Свободные фотографы - Фотосервис{% endblock %}
+
+{% block content %}
+<h2>Поиск свободного фотографа</h2>
+
+<form method="get" class="row g-2 mb-4">
+    <div class="col-auto">
+        <input type="date" name="date" class="form-control"
+               value="{{ shoot_date|default:'' }}" required>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Найти</button>
+    </div>
+</form>
+
+{% if shoot_date %}
+    <h4>Дата: {{ shoot_date }}</h4>
+    <div class="row">
+        {% for p in photographers %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ p.name }}</h5>
+                        <p>⭐ Рейтинг: {{ p.rating }}<br>
+                           💰 Ставка: {{ p.hourly_rate }} руб./ч</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12"><p class="text-muted">На эту дату все фотографы заняты.</p></div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

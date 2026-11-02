@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - Сервис фотосессий{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5 pt-5">
+    <h1 class="display-4 fw-bold mb-4">📸 Сервис организации фотосессий</h1>
+    
+    <p class="lead text-muted mb-5">
+        Найдите лучшего фотографа, выберите идеальную локацию и забронируйте съёмку в пару кликов.
+    </p>
+    
+    <div class="d-flex justify-content-center gap-3">
+        <a href="{% url 'photographers' %}" class="btn btn-primary btn-lg px-4">Найти фотографа</a>
+        <a href="{% url 'locations' %}" class="btn btn-outline-secondary btn-lg px-4">Выбрать локацию</a>
+    </div>
+</div>
+{% endblock %}

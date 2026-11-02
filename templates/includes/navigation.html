@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">📸 Фотосервис</a>
+        <div class="navbar-nav me-auto">
+            <a class="nav-link" href="{% url 'photographers' %}">Фотографы</a>
+            <a class="nav-link" href="{% url 'locations' %}">Локации</a>
+            <a class="nav-link" href="{% url 'bookings' %}">Бронирования</a>
+        </div>
+        <div class="navbar-nav" id="auth-block">
+            <a class="nav-link" href="{% url 'login' %}" id="login-link">Войти</a>
+        </div>
+    </div>
+</nav>

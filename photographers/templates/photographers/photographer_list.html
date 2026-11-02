@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Фотографы - Фотосервис{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Фотографы</h2>
+
+<!-- Кнопка перехода на страницу поиска свободных фотографов -->
+<a href="{% url 'available_photographers' %}" class="btn btn-outline-primary mb-3">
+    🔍 Найти свободного фотографа
+</a>
+
+<p>Всего фотографов: <strong>{{ photographers|length }}</strong></p>
+
+<div class="row">
+    {% for p in photographers %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ p.name }}</h5>
+                    <p class="card-text">
+                        ⭐ Рейтинг: {{ p.rating }}<br>
+                        💰 Ставка: {{ p.hourly_rate }} руб./ч<br>
+                        ⏱ Мин. часов: {{ p.min_hours }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12"><p class="text-muted">Фотографы не найдены.</p></div>
+    {% endfor %}
+</div>
+{% endblock %}
