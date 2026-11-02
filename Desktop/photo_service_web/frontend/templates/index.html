@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<h1>Добро пожаловать в сервис организации фотосессий</h1>
+<p class="lead">Найдите фотографа, выберите локацию и забронируйте съёмку.</p>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">📷 Фотографы</h5>
+                <p class="card-text">Рейтинг, ставка, минимальная длительность.</p>
+                <a href="/photographers/" class="btn btn-primary">Смотреть</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">🏞 Локации</h5>
+                <p class="card-text">Студии, парки, студийные пространства.</p>
+                <a href="/locations/" class="btn btn-primary">Смотреть</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">📅 Бронирования</h5>
+                <p class="card-text">Создавайте и отменяйте бронирования.</p>
+                <a href="/bookings/" class="btn btn-primary">Смотреть</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

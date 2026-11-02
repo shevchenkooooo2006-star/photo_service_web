@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Фотографы</h2>
+<div class="row mb-3">
+    <div class="col-md-4">
+        <input type="text" id="search" class="form-control" placeholder="Поиск по имени">
+    </div>
+    <div class="col-md-4">
+        <select id="ordering" class="form-select">
+            <option value="-rating">По рейтингу (убыв.)</option>
+            <option value="rating">По рейтингу (возр.)</option>
+            <option value="hourly_rate">По ставке (возр.)</option>
+            <option value="-hourly_rate">По ставке (убыв.)</option>
+        </select>
+    </div>
+</div>
+<div id="photographers-list" class="row"></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/photographers.js' %}"></script>
+{% endblock %}
