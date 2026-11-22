@@ -36,3 +36,18 @@
    bash
    git clone <ссылка>
    cd photo_service_web
+
+## Django ORM (ПР9)
+
+Данные проекта теперь получаются через Django ORM, а не через ручные SQL-запросы.
+
+### Реализовано
+- Модели `Photographer`, `Location`, `Client`, `Booking` с миграциями.
+- Замена SQL-запросов на ORM-методы: `all()`, `filter()`, `exclude()`, `get()`, `order_by()`, `values()`, `select_related()`, `aggregate()`, `annotate()`.
+- Пагинация списка броней (`Paginator`, 5 записей на страницу).
+- Проверка доступности фотографов через `exclude()` и `values_list()`.
+
+### Файлы
+- `frontend/views.py` — представления переведены на ORM.
+- `bookings/templates/bookings/booking_list.html` — добавлена пагинация.
+- ORM-запросы продемонстрированы в `python manage.py shell`.
