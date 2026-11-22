@@ -51,3 +51,10 @@
 - `frontend/views.py` — представления переведены на ORM.
 - `bookings/templates/bookings/booking_list.html` — добавлена пагинация.
 - ORM-запросы продемонстрированы в `python manage.py shell`.
+
+## Админка и Django Debug Toolbar (ПР10)
+
+- Настроены списки, поиск, фильтры для моделей Photographer, Location, Booking, Client.
+- Добавлена локализация админки (`ru-RU`).
+- Подключён Django Debug Toolbar для анализа SQL-запросов.
+- В админке используются `list_editable`, `search_fields`, `list_filter`, `autocomplete_fields`, `date_hierarchy`.

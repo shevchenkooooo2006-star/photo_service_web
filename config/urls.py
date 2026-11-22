@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from frontend import views as frontend_views
+import debug_toolbar
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -9,20 +10,29 @@ urlpatterns = [
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/docs/",
-        SpectacularSwaggerView.as_view(
-            url_name="schema"),
-        name="swagger-ui"),
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui"
+    ),
 
     # Frontend — с именами маршрутов
     path("", frontend_views.index, name="index"),
     path(
         "photographers/",
         frontend_views.photographers_page,
-        name="photographers"),
+        name="photographers"
+    ),
     path("locations/", frontend_views.locations_page, name="locations"),
     path("bookings/", frontend_views.bookings_page, name="bookings"),
     path("login/", frontend_views.login_page, name="login"),
-    path("photographers/available/",
-         frontend_views.available_photographers,
-         name="available_photographers"),
+    path(
+        "photographers/available/",
+        frontend_views.available_photographers,
+        name="available_photographers"
+    ),
 ]
+
+# Подключение Debug Toolbar
+if debug_toolbar:
+    urlpatterns += [
+        path("__debug__/", include(debug_toolbar.urls)),
+    ]
