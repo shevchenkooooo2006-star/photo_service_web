@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from photographers.models import Photographer
 from locations.models import Location
 from bookings.models import Booking
+from datetime import datetime
 
 
 def index(request):
@@ -37,18 +38,36 @@ def bookings_page(request):
 
 
 def available_photographers(request):
-    shoot_date = request.GET.get("date")
+    shoot_date_raw = request.GET.get("date", "").strip()
+    shoot_date = None
+    error = None
     photographers = Photographer.objects.all().order_by("-rating")
 
-    if shoot_date:
-        busy_ids = Booking.objects.filter(
-            shoot_date=shoot_date, is_cancelled=False,
-        ).values_list("photographer_id", flat=True)
-        photographers = photographers.exclude(id__in=busy_ids)
+    if shoot_date_raw:
+        try:
+            # Проверяем, что введённая строка — дата в формате YYYY-MM-DD
+            shoot_date = datetime.strptime(shoot_date_raw, "%Y-%m-%d").date()
+
+            # Ищем занятых фотографов на эту дату
+            busy_ids = Booking.objects.filter(
+                shoot_date=shoot_date,
+                is_cancelled=False,
+            ).values_list("photographer_id", flat=True)
+
+            photographers = photographers.exclude(id__in=busy_ids)
+
+        except ValueError:
+            # Если дата некорректна — не падаем, а показываем ошибку
+            error = f"Некорректная дата: «{shoot_date_raw}». Используйте формат ГГГГ-ММ-ДД."
 
     return render(
-        request, "photographers/available.html",
-        {"photographers": photographers, "shoot_date": shoot_date},
+        request,
+        "photographers/available.html",
+        {
+            "photographers": photographers,
+            "shoot_date": shoot_date_raw,
+            "error": error,
+        },
     )
 
 
