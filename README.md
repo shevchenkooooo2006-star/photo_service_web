@@ -58,3 +58,31 @@
 - Добавлена локализация админки (`ru-RU`).
 - Подключён Django Debug Toolbar для анализа SQL-запросов.
 - В админке используются `list_editable`, `search_fields`, `list_filter`, `autocomplete_fields`, `date_hierarchy`.
+
+## RESTful API (ПР11)
+
+### Ресурсы и методы
+- `/api/photographers/` — CRUD фотографов (GET, POST, PUT, PATCH, DELETE).
+- `/api/locations/` — CRUD локаций.
+- `/api/clients/` — CRUD клиентов.
+- `/api/bookings/` — CRUD броней.
+- `/api/bookings/{id}/cancel/` — POST-запрос для отмены брони.
+
+### Аутентификация
+- JWT-токены: `/api/auth/token/`, `/api/auth/token/refresh/`.
+- Регистрация: `/api/auth/register/`.
+
+### Документация
+- Swagger UI: `/api/docs/`.
+- OpenAPI схема: `/api/schema/`.
+
+### Безопасность
+- JWT + IsAuthenticatedOrReadOnly.
+- CORS (доверенные origins).
+- Throttling (30/мин для анонимов, 120/мин для авторизованных).
+- Секреты в `.env`.
+- ORM (защита от SQL-инъекций).
+
+### Форматы данных
+- Все запросы и ответы — JSON.
+- В сериализаторах реализованы валидация и вложенные данные (`photographer_detail` и т.д.).
